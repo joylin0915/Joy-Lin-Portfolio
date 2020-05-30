@@ -1,18 +1,206 @@
-.btn {
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
+@font-face {
+  font-family: 'Futura-Book';
+  src: url(/font/Futura-Book.ttf) format("opentype");
 }
 
-.btn {
-  padding: 6px 12px;
-  background: #30c39e;
+nav .content .nav-logo, nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner, nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner:before, nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner:after {
+  display: block;
 }
 
-.btn:hover {
-  background: #2baf8d;
+nav .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.btn:active {
-  background: #269a7d;
+body {
+  font-family: "Microsoft JhengHei", "LiHei Pro Medium", "Apple LiGothic Medium";
+  color: #727272;
+  background-color: #f7f7f7;
+  margin: 0;
+}
+
+div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #727272;
+}
+
+a:hover {
+  color: #224361;
+}
+
+h1 {
+  font-family: 'Futura-Book';
+}
+
+.content {
+  margin: 0 auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .content {
+    max-width: 720px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .content {
+    max-width: 960px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .content {
+    max-width: 1140px;
+  }
+}
+
+nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner, nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner:before, nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner:after {
+  width: 40px;
+  height: 3px;
+  background-color: #224361;
+  border-radius: 3px;
+  position: absolute;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  -webkit-transition-duration: 0.15s;
+          transition-duration: 0.15s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
+
+nav {
+  background-color: #fff;
+}
+
+nav .content {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+nav .content .nav-logo img {
+  height: 40px;
+}
+
+nav .content #nav-mobile .hamburger {
+  padding: 0;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-transition-property: opacity, -webkit-filter;
+  transition-property: opacity, -webkit-filter;
+  transition-property: opacity, filter;
+  transition-property: opacity, filter, -webkit-filter;
+  -webkit-transition-timing-function: linear;
+          transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+  -webkit-transition-duration: 0.22s;
+          transition-duration: 0.22s;
+  -webkit-transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+nav .content #nav-mobile .hamburger:hover {
+  opacity: 0.7;
+}
+
+nav .content #nav-mobile .hamburger .hamburger-box {
+  width: 40px;
+  height: 21px;
+  display: inline-block;
+  position: relative;
+}
+
+nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner {
+  top: 50%;
+  margin-top: -2px;
+  -webkit-transition-duration: 0.22s;
+          transition-duration: 0.22s;
+  -webkit-transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner:before {
+  content: "";
+  top: -10px;
+  -webkit-transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+  transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+}
+
+nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner:after {
+  content: "";
+  bottom: -10px;
+  -webkit-transition: bottom 0.1s 0.25s ease-in, -webkit-transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: bottom 0.1s 0.25s ease-in, -webkit-transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19), -webkit-transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+nav .content #nav-mobile .hamburger.active .hamburger-inner {
+  background-color: #224361;
+  -webkit-transform: rotate(225deg);
+          transform: rotate(225deg);
+  -webkit-transition-delay: 0.12s;
+          transition-delay: 0.12s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+          transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+nav .content #nav-mobile .hamburger.active .hamburger-inner::before {
+  background-color: #224361;
+  top: 0;
+  opacity: 0;
+  -webkit-transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+  transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+}
+
+nav .content #nav-mobile .hamburger.active .hamburger-inner::after {
+  background-color: #224361;
+  bottom: 0;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transition: bottom 0.1s ease-out, -webkit-transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: bottom 0.1s ease-out, -webkit-transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@media screen and (min-width: 768px) {
+  nav .content #nav-mobile {
+    display: none;
+  }
+}
+
+nav .content #nav-web {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  nav .content #nav-web {
+    display: block;
+  }
+  nav .content #nav-web a {
+    padding: 0 5px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

@@ -1,19 +1,240 @@
-$primary: #30c39e;
+// font-color
+$darkBlue:#224361;
+$lightBlue:#94c1d7;
+$darkGray:#4b4b4b;
+$lightGray:#727272;
+$white:#fff;
 
-%transition {
-    transition: all .3s ease;
+// font
+@font-face {
+    font-family: 'Futura-Book';
+    src: url(/font/Futura-Book.ttf) format("opentype");
 }
 
-.btn {
-    padding: 6px 12px;
-    background: $primary;
-    @extend %transition;
+$font-family: 'Microsoft JhengHei',
+'LiHei Pro Medium',
+'Apple LiGothic Medium';
+$special-font:'Futura-Book';
+
+// RWD
+$mobile:768px;
+$pad:1024px;
+$pc:1440px;
+
+// @mixin pad-straight() {
+//     @media screen and (min-width: $pad-straight) {
+//         @content;
+//     }
+// }
+
+// @mixin pad-horizontal() {
+//     @media screen and (min-width: $pad-horizontal) {
+//         @content;
+//     }
+// }
+
+// @mixin pc() {
+//     @media screen and (min-width: $pc) {
+//         @content;
+//     }
+// }
+
+// 排版設定
+%display-block {
+    display: block;
+}
+
+%display-flex {
+    display: flex;
+    align-items: center;
+}
+
+
+
+// 基本設定
+body {
+    font-family: $font-family;
+    color: $lightGray;
+    background-color: #f7f7f7;
+    margin: 0;
+}
+
+div {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: $lightGray;
 
     &:hover {
-        background: darken($primary, 5%);
+        color: $darkBlue;
     }
 
-    &:active {
-        background: darken($primary, 10%);
+}
+
+h1 {
+    font-family: 'Futura-Book';
+}
+
+.content {
+    margin: 0 auto;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    @media screen and (min-width: $mobile) {
+        max-width: 720px;
     }
+
+    @media screen and (min-width: $pad) {
+        max-width: 960px;
+    }
+
+    @media screen and (min-width: $pc) {
+        max-width: 1140px;
+    }
+}
+
+
+// nav 共同使用設定
+%hamburger-inner {
+    width: 40px;
+    height: 3px;
+    background-color: $darkBlue;
+    border-radius: 3px;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease;
+}
+
+
+
+
+
+
+// nav
+nav {
+    background-color: $white;
+
+    .content {
+        @extend %display-flex;
+        justify-content: space-between;
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        .nav-logo {
+            @extend %display-block;
+
+            img {
+                height: 40px;
+            }
+        }
+
+        #nav-mobile {
+
+            // hamburger
+            .hamburger {
+                padding: 0;
+                display: inline-block;
+                cursor: pointer;
+                transition-property: opacity, filter;
+                // transition-duration: 0.15s;
+                transition-timing-function: linear;
+                font: inherit;
+                color: inherit;
+                text-transform: none;
+                background-color: transparent;
+                border: 0;
+                margin: 0;
+                overflow: visible;
+                transition-duration: 0.22s;
+                transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+                &:hover {
+                    opacity: 0.7;
+                }
+
+                .hamburger-box {
+                    width: 40px;
+                    height: 21px;
+                    display: inline-block;
+                    position: relative;
+
+                    .hamburger-inner {
+                        @extend %hamburger-inner;
+                        @extend %display-block;
+                        top: 50%;
+                        margin-top: -2px;
+                        transition-duration: 0.22s;
+                        transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+                        &:before {
+                            @extend %hamburger-inner;
+                            content: "";
+                            @extend %display-block;
+                            top: -10px;
+                            transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+
+                        }
+
+                        &:after {
+                            @extend %hamburger-inner;
+                            content: "";
+                            @extend %display-block;
+                            bottom: -10px;
+                            transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+                        }
+                    }
+                }
+
+                &.active {
+                    .hamburger-inner {
+                        background-color: $darkBlue;
+                        transform: rotate(225deg);
+                        transition-delay: 0.12s;
+                        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+                        &::before {
+                            background-color: $darkBlue;
+                            top: 0;
+                            opacity: 0;
+                            transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+                        }
+
+                        &::after {
+                            background-color: $darkBlue;
+                            bottom: 0;
+                            transform: rotate(-90deg);
+                            transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+                        }
+                    }
+                }
+            }
+
+
+
+            @media screen and (min-width: $mobile) {
+                display: none;
+            }
+
+        }
+
+
+        #nav-web {
+            display: none;
+
+            @media screen and (min-width: $mobile) {
+                display: block;
+
+                a {
+                    padding: 0 5px;
+                }
+            }
+        }
+    }
+
+
+
 }
