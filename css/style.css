@@ -35,6 +35,8 @@ a {
 
 a:hover {
   color: #224361;
+  -webkit-transition: color .5s ease-in-out;
+  transition: color .5s ease-in-out;
 }
 
 h1 {
@@ -197,10 +199,43 @@ nav .content #nav-web {
 
 @media screen and (min-width: 768px) {
   nav .content #nav-web {
-    display: block;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
   nav .content #nav-web a {
-    padding: 0 5px;
+    width: 94px;
+    text-align: center;
+    position: relative;
+  }
+  nav .content #nav-web a:hover:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    width: 64px;
+    left: 15px;
+    height: 3px;
+    background-color: #224361;
+    -webkit-animation-name: link-line-animatoin;
+            animation-name: link-line-animatoin;
+    -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+  }
+  @-webkit-keyframes link-line-animatoin {
+    0% {
+      width: 0px;
+    }
+    100% {
+      width: 64px;
+    }
+  }
+  @keyframes link-line-animatoin {
+    0% {
+      width: 0px;
+    }
+    100% {
+      width: 64px;
+    }
   }
 }
 /*# sourceMappingURL=style.css.map */

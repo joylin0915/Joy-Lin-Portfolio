@@ -69,6 +69,7 @@ a {
 
     &:hover {
         color: $darkBlue;
+        transition: color .5s ease-in-out;
     }
 
 }
@@ -226,10 +227,38 @@ nav {
             display: none;
 
             @media screen and (min-width: $mobile) {
-                display: block;
+                display: flex;
 
                 a {
-                    padding: 0 5px;
+                    width: 94px;
+                    text-align: center;
+                    position: relative;
+
+                    &:hover {
+                        &:after {
+                            content: '';
+                            position: absolute;
+                            bottom: -5px;
+                            width: 64px;
+                            left: 15px;
+                            height: 3px;
+                            background-color: $darkBlue;
+                            animation-name: link-line-animatoin;
+                            animation-duration: .5s;
+                            // animation-direction: alternate;
+                        }
+
+                        @keyframes link-line-animatoin {
+                            0% {
+                                width: 0px;
+                            }
+
+                            100% {
+                                width: 64px;
+                            }
+                        }
+                    }
+
                 }
             }
         }
