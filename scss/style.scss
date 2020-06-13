@@ -1,11 +1,14 @@
-// font-color
+// color設定
 $darkBlue:#224361;
 $lightBlue:#94c1d7;
+$secondLightBlue:#cadbe2;
 $darkGray:#4b4b4b;
 $lightGray:#727272;
 $white:#fff;
+$gradientPrimary:linear-gradient(270deg, #224361, #94c1d7, #547ca1);
+$lineGradient:linear-gradient(90deg, #224361, #94c1d7);
+$transparentGradient:linear-gradient(90deg, rgba(148, 193, 215, 0.5), rgba(34, 67, 97, 0.8));
 
-// font
 @font-face {
     font-family: 'Futura-Book';
     src: url(/font/Futura-Book.ttf) format("opentype");
@@ -21,24 +24,6 @@ $mobile:768px;
 $pad:1024px;
 $pc:1440px;
 
-// @mixin pad-straight() {
-//     @media screen and (min-width: $pad-straight) {
-//         @content;
-//     }
-// }
-
-// @mixin pad-horizontal() {
-//     @media screen and (min-width: $pad-horizontal) {
-//         @content;
-//     }
-// }
-
-// @mixin pc() {
-//     @media screen and (min-width: $pc) {
-//         @content;
-//     }
-// }
-
 // 排版設定
 %display-block {
     display: block;
@@ -48,7 +33,6 @@ $pc:1440px;
     display: flex;
     align-items: center;
 }
-
 
 
 // 基本設定
@@ -74,8 +58,24 @@ a {
 
 }
 
+img {
+    display: block;
+}
+
 h1 {
     font-family: 'Futura-Book';
+    font-size: 50px;
+    margin: 0;
+    color: $darkGray;
+
+    @media screen and (min-width: $mobile) {
+        font-size: 80px;
+    }
+
+    @media screen and (min-width: $pad) {
+        font-size: 100px;
+    }
+
 }
 
 .content {
@@ -84,19 +84,94 @@ h1 {
     padding-left: 15px;
 
     @media screen and (min-width: $mobile) {
-        max-width: 720px;
-    }
-
-    @media screen and (min-width: $pad) {
-        max-width: 960px;
-    }
-
-    @media screen and (min-width: $pc) {
         max-width: 1140px;
     }
+
+    // @media screen and (min-width: $pad) {
+    //     max-width: 960px;
+    // }
+
+    // @media screen and (min-width: $pc) {
+    //     max-width: 1140px;
+    // }
 }
 
+.button {
+    font-size: 14px;
+    width: 120px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $white;
+    border: 1px solid $darkBlue;
+    color: $darkBlue;
+    position: relative;
+    transition: color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 120px;
+        right: 0;
+        background-color: $white;
+        animation-name: button-animation01;
+        animation-duration: .8s;
+
+        @keyframes button-animation01 {
+            0% {
+                width: 120px;
+                background-color: $darkBlue;
+            }
+
+            100% {
+                width: 0px;
+                background-color: $darkBlue;
+            }
+        }
+    }
+
+    p {
+        margin: 0;
+        z-index: 2;
+        color: $darkBlue;
+    }
+
+    &:hover {
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            left: 0;
+            background-color: $darkBlue;
+            animation-name: button-animation;
+            animation-duration: .6s;
+
+            @keyframes button-animation {
+                0% {
+                    width: 0px;
+                }
+
+                100% {
+                    width: 120px;
+                }
+            }
+
+        }
+
+        p {
+            color: $white;
+        }
+    }
+
+
+}
+
+// =====================================================
 // nav 共同使用設定
 %hamburger-inner {
     width: 40px;
@@ -109,14 +184,15 @@ h1 {
     transition-timing-function: ease;
 }
 
-
-
-
-
-
 // nav
 nav {
     background-color: $white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+
 
     .content {
         @extend %display-flex;
@@ -128,7 +204,7 @@ nav {
             @extend %display-block;
 
             img {
-                height: 40px;
+                height: 35px;
             }
         }
 
@@ -140,7 +216,6 @@ nav {
                 display: inline-block;
                 cursor: pointer;
                 transition-property: opacity, filter;
-                // transition-duration: 0.15s;
                 transition-timing-function: linear;
                 font: inherit;
                 color: inherit;
@@ -214,7 +289,41 @@ nav {
                 }
             }
 
+            .nav-drowpDown-block {
+                display: none;
 
+                &.show {
+                    display: block;
+                    position: absolute;
+                    height: 100vh;
+                    top: 69px;
+                    right: 0;
+                    left: 0;
+                    background-color: $secondLightBlue;
+                    padding: 50px 15px;
+
+                    a {
+                        display: block;
+                        text-align: center;
+                        margin-bottom: 30px;
+                        position: relative;
+
+                        &.active {
+                            color: $darkBlue;
+
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                bottom: -5px;
+                                width: 64px;
+                                left: calc(50% - 32px);
+                                height: 3px;
+                                background: $darkBlue;
+                            }
+                        }
+                    }
+                }
+            }
 
             @media screen and (min-width: $mobile) {
                 display: none;
@@ -242,10 +351,9 @@ nav {
                             width: 64px;
                             left: 15px;
                             height: 3px;
-                            background-color: $darkBlue;
+                            background: $lineGradient;
                             animation-name: link-line-animatoin;
                             animation-duration: .5s;
-                            // animation-direction: alternate;
                         }
 
                         @keyframes link-line-animatoin {
@@ -259,11 +367,170 @@ nav {
                         }
                     }
 
+                    &.active {
+                        &:after {
+                            content: '';
+                            position: absolute;
+                            bottom: -5px;
+                            width: 64px;
+                            left: 15px;
+                            height: 3px;
+                            background: $lineGradient;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+
+
+// =====================================================
+// index 設定區域
+#index {
+    .block {
+        padding: 75px 0;
+    }
+
+    .block-01 {
+        margin-top: 69px;
+        padding-top: 50px;
+
+        .big-font-title {
+            position: relative;
+
+            .blue-color-block {
+                width: 75%;
+                height: 140px;
+                background: $gradientPrimary;
+                background-size: 400% 400%;
+                animation: color-block 6s ease infinite;
+                position: absolute;
+                top: 30px;
+                right: 0;
+                z-index: -1;
+
+                @keyframes color-block {
+                    0% {
+                        background-position: 0% 50%
+                    }
+
+                    50% {
+                        background-position: 100% 50%
+                    }
+
+                    100% {
+                        background-position: 0% 50%
+                    }
+                }
+
+                @media screen and (min-width: $mobile) {
+                    top: 53px;
+                    height: 180px;
+                }
+
+                @media screen and (min-width: $pad) {
+                    top: 68px;
+                    height: 215px;
+                    width: 76.8%;
+                }
+            }
+
+            .blue-color-line {
+                position: absolute;
+                width: 70%;
+                height: 8px;
+                left: 0;
+                background: linear-gradient(90deg, #224361, #94c1d7);
+                bottom: -10px;
+
+                @media screen and (min-width: $mobile) {
+                    bottom: -60px;
                 }
             }
         }
     }
 
+    .works-img-block {
+        @media screen and (min-width: $pad) {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .works-item {
+            margin-bottom: 60px;
+
+            @media screen and (min-width: $pad) {
+                padding: 0 15px;
+
+                &.w-1 {
+                    width: 33.3333333%;
+                }
+
+                &.w-2 {
+                    width: 40%;
+                }
+
+                &.w-3 {
+                    width: 60%;
+                }
+            }
+
+            .img-item {
+                @media screen and (min-width: $pad) {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                }
+
+            }
+
+            .img-item-bg {
+                width: 100%;
+
+                @media screen and (min-width: $pad) {
+                    height: 100%;
+                    width: auto;
+                }
+            }
+
+            .img-item-content {
+                margin-top: 15px;
+                text-align: center;
+
+                h3,
+                p {
+                    margin: 0;
+                }
+
+                .button {
+                    margin: 0 auto;
+                    margin-top: 15px;
+                }
+
+                &.web {
+                    display: none;
+                }
+
+                @media screen and (min-width: $pad) {
+                    &.mobile {
+                        display: none;
+                    }
+
+                    &.web {
+                        display: block;
+                        position: absolute;
+                    }
+                }
+            }
+        }
 
 
+    }
 }

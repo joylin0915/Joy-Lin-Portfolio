@@ -39,8 +39,27 @@ a:hover {
   transition: color .5s ease-in-out;
 }
 
+img {
+  display: block;
+}
+
 h1 {
   font-family: 'Futura-Book';
+  font-size: 50px;
+  margin: 0;
+  color: #4b4b4b;
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 80px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  h1 {
+    font-size: 100px;
+  }
 }
 
 .content {
@@ -51,20 +70,107 @@ h1 {
 
 @media screen and (min-width: 768px) {
   .content {
-    max-width: 720px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .content {
-    max-width: 960px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .content {
     max-width: 1140px;
   }
+}
+
+.button {
+  font-size: 14px;
+  width: 120px;
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #fff;
+  border: 1px solid #224361;
+  color: #224361;
+  position: relative;
+  -webkit-transition: color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  right: 0;
+  background-color: #fff;
+  -webkit-animation-name: button-animation01;
+          animation-name: button-animation01;
+  -webkit-animation-duration: .8s;
+          animation-duration: .8s;
+}
+
+@-webkit-keyframes button-animation01 {
+  0% {
+    width: 120px;
+    background-color: #224361;
+  }
+  100% {
+    width: 0px;
+    background-color: #224361;
+  }
+}
+
+@keyframes button-animation01 {
+  0% {
+    width: 120px;
+    background-color: #224361;
+  }
+  100% {
+    width: 0px;
+    background-color: #224361;
+  }
+}
+
+.button p {
+  margin: 0;
+  z-index: 2;
+  color: #224361;
+}
+
+.button:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  left: 0;
+  background-color: #224361;
+  -webkit-animation-name: button-animation;
+          animation-name: button-animation;
+  -webkit-animation-duration: .6s;
+          animation-duration: .6s;
+}
+
+@-webkit-keyframes button-animation {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 120px;
+  }
+}
+
+@keyframes button-animation {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 120px;
+  }
+}
+
+.button:hover p {
+  color: #fff;
 }
 
 nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner, nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner:before, nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner:after {
@@ -85,6 +191,11 @@ nav .content #nav-mobile .hamburger .hamburger-box .hamburger-inner, nav .conten
 
 nav {
   background-color: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
 }
 
 nav .content {
@@ -96,7 +207,7 @@ nav .content {
 }
 
 nav .content .nav-logo img {
-  height: 40px;
+  height: 35px;
 }
 
 nav .content #nav-mobile .hamburger {
@@ -187,6 +298,42 @@ nav .content #nav-mobile .hamburger.active .hamburger-inner::after {
   transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+nav .content #nav-mobile .nav-drowpDown-block {
+  display: none;
+}
+
+nav .content #nav-mobile .nav-drowpDown-block.show {
+  display: block;
+  position: absolute;
+  height: 100vh;
+  top: 69px;
+  right: 0;
+  left: 0;
+  background-color: #cadbe2;
+  padding: 50px 15px;
+}
+
+nav .content #nav-mobile .nav-drowpDown-block.show a {
+  display: block;
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+nav .content #nav-mobile .nav-drowpDown-block.show a.active {
+  color: #224361;
+}
+
+nav .content #nav-mobile .nav-drowpDown-block.show a.active:after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  width: 64px;
+  left: calc(50% - 32px);
+  height: 3px;
+  background: #224361;
+}
+
 @media screen and (min-width: 768px) {
   nav .content #nav-mobile {
     display: none;
@@ -215,7 +362,8 @@ nav .content #nav-web {
     width: 64px;
     left: 15px;
     height: 3px;
-    background-color: #224361;
+    background: -webkit-gradient(linear, left top, right top, from(#224361), to(#94c1d7));
+    background: linear-gradient(90deg, #224361, #94c1d7);
     -webkit-animation-name: link-line-animatoin;
             animation-name: link-line-animatoin;
     -webkit-animation-duration: .5s;
@@ -236,6 +384,185 @@ nav .content #nav-web {
     100% {
       width: 64px;
     }
+  }
+  nav .content #nav-web a.active:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    width: 64px;
+    left: 15px;
+    height: 3px;
+    background: -webkit-gradient(linear, left top, right top, from(#224361), to(#94c1d7));
+    background: linear-gradient(90deg, #224361, #94c1d7);
+  }
+}
+
+#index .block {
+  padding: 75px 0;
+}
+
+#index .block-01 {
+  margin-top: 69px;
+  padding-top: 50px;
+}
+
+#index .block-01 .big-font-title {
+  position: relative;
+}
+
+#index .block-01 .big-font-title .blue-color-block {
+  width: 75%;
+  height: 140px;
+  background: -webkit-gradient(linear, right top, left top, from(#224361), color-stop(#94c1d7), to(#547ca1));
+  background: linear-gradient(270deg, #224361, #94c1d7, #547ca1);
+  background-size: 400% 400%;
+  -webkit-animation: color-block 6s ease infinite;
+          animation: color-block 6s ease infinite;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  z-index: -1;
+}
+
+@-webkit-keyframes color-block {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes color-block {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #index .block-01 .big-font-title .blue-color-block {
+    top: 53px;
+    height: 180px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #index .block-01 .big-font-title .blue-color-block {
+    top: 68px;
+    height: 215px;
+    width: 76.8%;
+  }
+}
+
+#index .block-01 .big-font-title .blue-color-line {
+  position: absolute;
+  width: 70%;
+  height: 8px;
+  left: 0;
+  background: -webkit-gradient(linear, left top, right top, from(#224361), to(#94c1d7));
+  background: linear-gradient(90deg, #224361, #94c1d7);
+  bottom: -10px;
+}
+
+@media screen and (min-width: 768px) {
+  #index .block-01 .big-font-title .blue-color-line {
+    bottom: -60px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #index .works-img-block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+
+#index .works-img-block .works-item {
+  margin-bottom: 60px;
+}
+
+@media screen and (min-width: 1024px) {
+  #index .works-img-block .works-item {
+    padding: 0 15px;
+  }
+  #index .works-img-block .works-item.w-1 {
+    width: 33.3333333%;
+  }
+  #index .works-img-block .works-item.w-2 {
+    width: 40%;
+  }
+  #index .works-img-block .works-item.w-3 {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #index .works-img-block .works-item .img-item {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    overflow: hidden;
+  }
+}
+
+#index .works-img-block .works-item .img-item-bg {
+  width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  #index .works-img-block .works-item .img-item-bg {
+    height: 100%;
+    width: auto;
+  }
+}
+
+#index .works-img-block .works-item .img-item-content {
+  margin-top: 15px;
+  text-align: center;
+}
+
+#index .works-img-block .works-item .img-item-content h3,
+#index .works-img-block .works-item .img-item-content p {
+  margin: 0;
+}
+
+#index .works-img-block .works-item .img-item-content .button {
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+#index .works-img-block .works-item .img-item-content.web {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  #index .works-img-block .works-item .img-item-content.mobile {
+    display: none;
+  }
+  #index .works-img-block .works-item .img-item-content.web {
+    display: block;
+    position: absolute;
   }
 }
 /*# sourceMappingURL=style.css.map */

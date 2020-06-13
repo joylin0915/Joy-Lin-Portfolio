@@ -1,5 +1,6 @@
-$(function(){
-    $('.hamburger').click(function(){
-        $('.hamburger').toggleClass('active')
+$(function () {
+    $('.hamburger').click(function () {
+        $('.hamburger').toggleClass('active');
+        $('.nav-drowpDown-block').slideToggle().addClass('show');
     })
 })
